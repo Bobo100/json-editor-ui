@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./css/JsonDeleteKey.css";
 
+type JsonRecord = Record<string, unknown>;
+
 export const JsonDeleteKey = () => {
 
     const [keys, setKeys] = useState<string[]>([]);
-    const [data, setData] = useState<any[]>([]);
+    const [data, setData] = useState<JsonRecord[]>([]);
 
     const handleFileInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
@@ -12,10 +14,10 @@ export const JsonDeleteKey = () => {
             const reader = new FileReader();
             reader.readAsText(file, "UTF-8");
             reader.onload = (evt) => {
-                const data = JSON.parse(evt.target?.result as string)
+                const data: JsonRecord[] = JSON.parse(evt.target?.result as string)
                 setData(data);
                 const keys = new Set<string>();
-                data.forEach((item: any) => {
+                data.forEach((item) => {
                     Object.keys(item).forEach(key => keys.add(key));
                 })
                 setKeys(Array.from(keys));
@@ -27,7 +29,7 @@ export const JsonDeleteKey = () => {
     const handleClick = () => {
         const selectedKeys = keys.filter(key => (document.getElementById(key) as HTMLInputElement).checked);
         const filteredData = data.map(item => {
-            const filteredItem: any = {};
+            const filteredItem: JsonRecord = {};
             selectedKeys.forEach(key => {
                 filteredItem[key] = item[key];
             });
