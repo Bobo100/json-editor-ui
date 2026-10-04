@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import uuid from "react-uuid";
 import "./css/JsonDeleteKey.css";
 
 export const JsonDeleteKey = () => {
@@ -62,16 +61,19 @@ export const JsonDeleteKey = () => {
                 <label htmlFor="chooseJsonFile" >選擇Json檔案</label>
                 <input type="file" id="chooseJsonFile" onChange={handleFileInput} />
 
-                {keys && keys.length > 0 && <h1>選擇要保留的欄位</h1> &&
-                    <div className="checkboxList">
-                        {keys.map((key, index) => (
-                            <div key={uuid()}>
-                                <input type="checkbox" value={key} id={key} />
-                                <label htmlFor={key}>{key}</label>
-                            </div>
-                        ))}
-                    </div>
-                }
+                {keys && keys.length > 0 && (
+                    <>
+                        <h1>選擇要保留的欄位</h1>
+                        <div className="checkboxList">
+                            {keys.map((key) => (
+                                <div key={key}>
+                                    <input type="checkbox" value={key} id={key} />
+                                    <label htmlFor={key}>{key}</label>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                )}
                 <h1>輸出Json</h1>
                 <button onClick={handleClick}>Export json</button>
             </div>
