@@ -21,4 +21,4 @@ npm install
 npm start   # http://localhost:3000
 ```
 
-技術:Create React App、React 18、TypeScript。樣式的 `.scss` 是手動編譯成旁邊的 `.css` 再 import(專案沒有裝 sass)。
+技術:Vite、React 19、TypeScript。樣式的 `.scss` 是手動編譯成旁邊的 `.css` 再 import(專案沒有裝 sass)。
